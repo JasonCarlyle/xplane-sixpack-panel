@@ -1,0 +1,13 @@
+{
+  "_README": [
+    "Per-aircraft overrides for the airspeed and vertical speed dials, keyed by",
+    "the aircraft's ICAO type code (shown in the bridge terminal when it loads).",
+    "Anything you set here wins over the V-speeds X-Plane reports, which is how",
+    "you fix an add-on aircraft whose author left them blank or wrong.",
+    "Recognised keys: vso vs1 vfe vno vne asiMin asiMax vsiMax.",
+    "Delete the entries below if you would rather trust the sim throughout."
+  ],
+
+  "C172": { "vso": 40, "vs1": 48, "vfe": 85, "vno": 129, "vne": 163 },
+  "P28A": { "vso": 49, "vs1": 55, "vfe": 103, "vno": 125, "vne": 154 }
+}

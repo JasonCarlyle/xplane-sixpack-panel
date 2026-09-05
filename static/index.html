@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Six-Pack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Six-Pack">
+<meta name="theme-color" content="#0a0b0d">
+<link rel="stylesheet" href="sixpack.css">
+<script>
+/* Installed before sixpack.js so it can catch that file failing to load or
+   parse -- an iPad has no console, so this is the only way to see it. */
+window.__debug = /[?&]debug/.test(location.search);
+/* Progress notes only with ?debug; faults always report. */
+window.__log = function (m, force) {
+  if (!window.__debug && !force) return;
+  try {
+    new Image().src = '/api/log?msg=' + encodeURIComponent(m) + '&t=' + (new Date()).getTime();
+  } catch (e) { /* nothing else to try */ }
+};
+window.onerror = function (msg, src, line, col) {
+  window.__log('JS ERROR: ' + msg + ' @ ' + (src || '?') + ':' + line + ':' + col, true);
+  var s = document.getElementById('status');
+  if (s) s.textContent = 'page error — see the bridge terminal';
+};
+window.__log('page start [' + navigator.userAgent + ']');
+</script>
+</head>
+<body>
+
+<div id="panel">
+  <div class="cell"><svg id="asi" viewBox="-100 -100 200 200" aria-label="Airspeed indicator"></svg></div>
+  <div class="cell"><svg id="ai"  viewBox="-100 -100 200 200" aria-label="Attitude indicator"></svg></div>
+  <div class="cell"><svg id="alt" viewBox="-100 -100 200 200" aria-label="Altimeter"></svg></div>
+  <div class="cell"><svg id="tc"  viewBox="-100 -100 200 200" aria-label="Turn coordinator"></svg></div>
+  <div class="cell"><svg id="hi"  viewBox="-100 -100 200 200" aria-label="Heading indicator"></svg></div>
+  <div class="cell"><svg id="vsi" viewBox="-100 -100 200 200" aria-label="Vertical speed indicator"></svg></div>
+</div>
+
+<div id="pfd-wrap" hidden>
+  <svg id="pfd" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid meet"
+       aria-label="Primary flight display"></svg>
+</div>
+
+<div id="bar">
+  <span id="dot" class="dot"></span>
+  <span id="status">connecting…</span>
+  <span class="sep"></span>
+  <span id="src" class="muted"></span>
+  <span class="sep"></span>
+  <span id="acf" class="muted"></span>
+  <span class="grow"></span>
+  <button id="panel-btn" type="button">panel</button>
+  <button id="digits-btn" type="button">digits</button>
+  <button id="full-btn" type="button">full screen</button>
+</div>
+
+<div id="overlay" hidden><div id="overlay-msg"></div></div>
+
+<script src="sixpack.js"></script>
+</body>
+</html>
