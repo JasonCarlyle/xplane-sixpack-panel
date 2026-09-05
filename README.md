@@ -3,6 +3,8 @@
 Six-pack and PFD instruments for X-Plane 12, served to any browser on your LAN
 — including the iPad in your drawer.
 
+![The six-pack, running in a browser at iPad resolution](docs/sixpack.png)
+
 ```
 iPad browser  <--HTTP/SSE-->  xpbridge.py  <--UDP 49000-->  X-Plane 12
 ```
